@@ -64,7 +64,6 @@ router.get('/posts/main', async (req, res, next) => {
 
 // 상품 상세 페이지 조회
 // authMiddleware 빼고 테스트 중(user token 없기 때문에)
-// 왜 /posts/detail?postId 하면 안되는지 모름..
 router.get("/posts/detail/:postId", async (req, res, next) => {
   try {
     const { postId } = req.params;
