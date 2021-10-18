@@ -2,6 +2,9 @@ const express = require('express');
 const Cart = require('../schemas/Cart');
 const router = express.Router();
 
+//에러 핸들 필요함
+// 400,401,404,500
+
 //장바구니 조회 API
 router.get('/carts', async (req, res) => {
   const { userId } = req.body;
@@ -23,7 +26,7 @@ router.get('/carts', async (req, res) => {
 //장바구니 등록 API
 // 기존에 담긴 물품이라면?
 // 일단 title 한개에 > goods
-router.post('/carts', async (req, res) => {
+router.post('/carts/:postId', async (req, res) => {
   const { postId } = req.params;
   const { userId } = req.body.userId;
   const { postInfo } = req.body.postInfo;
@@ -65,7 +68,63 @@ router.post('/carts', async (req, res) => {
 });
 
 //장바구니 수정 API
+// 프론트에서 +또는 -를 누를 떄의 값을 받아와서 데이터베이스에 업데이트
+route.put('/cart', async (req, res) => {
+  const { chgInfo } = req.body;
+
+  // 예외 상황1 : 갯수 1개에서 0개로
+  if (chgInfo.quntity == 0) {
+    await Cart.deleteOne({
+      userId: chgInfo.userId,
+      title: chgInfo.title,
+    });
+    return res.status(200).send({
+      result: 'success',
+      msg: '해당 물품이 장바구니에서 삭제되었습니다.',
+    });
+  }
+
+  try {
+    const updateCart = await Cart.updateOne(
+      {
+        userId: chgInfo.userId,
+        title: chgInfo.title,
+      },
+      {
+        $set: {
+          quantity: chgInfo.quantity,
+        },
+      }
+    );
+    return res.status(200).send({
+      result: 'success',
+      data: updateCart,
+      msg: '수정이 완료되었습니다.',
+    });
+  } catch {
+    return res.status(400).send({
+      result: 'failure',
+      msg: '알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요.',
+    });
+  }
+});
 
 //장바구니 삭제 API
+route.delete('/cart', async (req, res) => {
+  const { targetInfo } = req.body;
+
+  try {
+    await Cart.deleteOne({ targetInfo });
+    return res.status(200).send({
+      result: 'success',
+      msg: '해당 물품이 장바구니에서 삭제되었습니다.',
+    });
+  } catch {
+    return res.status(400).send({
+      result: 'failure',
+      msg: '알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요.',
+    });
+  }
+});
 
 module.exports = cartRouters;
