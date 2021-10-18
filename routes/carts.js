@@ -10,7 +10,7 @@ router.get('/carts', async (req, res) => {
     return res.status(200).send({
       result: 'sucess',
       cartAllList: cartAllList,
-      msg: '장바구니를 모두 불러왔습니다.'
+      msg: '장바구니를 모두 불러왔습니다.',
     });
   } catch {
     return res.status(400).send({
@@ -20,49 +20,46 @@ router.get('/carts', async (req, res) => {
   }
 });
 
-
 //장바구니 등록 API
 // 기존에 담긴 물품이라면?
-// 일단 1title > 1goods
-
+// 일단 title 한개에 > goods
 router.post('/carts', async (req, res) => {
   const { postId } = req.params;
-  const { userId } = req.body;
-  
+  const { userId } = req.body.userId;
+  const { postInfo } = req.body.postInfo;
+  // ㄴ 장바구니에 해당 물품의 정보를 담으려면 일단 보고있는 물품의 정보를 알아야 한다.
+  // 유정님 + 유빈님께 어떤 정보를 주고받을 지 상의 필요
+
+  // 장바구니에 담긴 물품에 대해 장바구니 담기를 눌렀을 때
   const isCart = await Cart.find({ userId, postId });
-  if(isCart){
+  if (isCart) {
     return res.status(400).send({
-      result: "failure",
-      msg: "이미 장바구니에 담긴 물품입니다."
+      result: 'failure',
+      msg: '이미 장바구니에 담긴 물품입니다.',
       // 프론트에서 해당유저의 장바구니로 이동??
-    })
+    });
   }
 
+  // 언제 담은건지 알아두기 위한 값
   const date = new Date();
 
   try {
-    const cart = new Cart({
-      title,
-      price,
-      imgUrl,
-      quntity,
-      date
+    const cart = await new Cart({
+      title: postInfo.title,
+      price: postInfo.price,
+      imgUrl: postInfo.imgUrl,
+      quntity: postInfo.quntity,
+      date: date,
     });
-
-    const cartsList = await Cart.find({}).sort('-date');
     return res.status(200).send({
-      result: 'sucess',
-      title: cartsList.title,
-      price: cartsList.price,
-      totalPrice: cartsList.price * cartsList.goodsQuantity,
-      title: cartsList.imgUrl,
-      title: cartsList.goodsId,
-      title: cartsList.goodsQuantity,
+      result: 'success',
+      data: cart,
+      msg: '장바구니에 정상적으로 등록되었습니다.',
     });
   } catch {
     return res.status(400).send({
       result: 400,
-      msg: '알 수 없는 오류가 떴습니다. 관리자에게 문의하세요.',
+      msg: '알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요.',
     });
   }
 });
