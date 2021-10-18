@@ -1,0 +1,28 @@
+{
+  "name": "node.js_project_4_mmh",
+  "version": "1.0.0",
+  "description": "Back-End",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://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@github.com/My-Market-Hally/MMH-BE.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/My-Market-Hally/MMH-BE/issues"
+  },
+  "homepage": "https://github.com/My-Market-Hally/MMH-BE#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.11"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
