@@ -11,7 +11,6 @@ const postSchema = new Schema({
     img: {
         type: String,
     },
-
     priceUnit: {
         type: String,
     },
