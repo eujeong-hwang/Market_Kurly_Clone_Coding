@@ -2,6 +2,13 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 const CartSchema = new Schema({
+  userId:{
+    type:String,
+    required: true
+  },
+  postId : {
+    type: String
+  },
   title: {
     type: String,
     required: true,
@@ -10,17 +17,17 @@ const CartSchema = new Schema({
     type: String,
     required: true,
   },
-  imgUrl: {
+  img: {
     type: String,
   },
-  quntity: {
+  quantity: {
     type: String,
     required: true,
   },
-  date: {
-    type: Date,
-    required: true,
-  },
+  // date: {
+  //   type: Date,
+  //   required: true,
+  // },
 });
 
 // PostSchema.virtual("postId").get(function () {
