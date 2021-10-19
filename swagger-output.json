@@ -1,0 +1,97 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "MMH API",
+    "description": "This is Apis for MMH",
+    "version": "1.0.0"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "securityDefinitions": {
+    "bearerAuth": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "scheme": "bearer",
+      "in": "header",
+      "bearerFormat": "JWT"
+    }
+  },
+  "tags": [],
+  "schemes": ["http"],
+  "consumes": [],
+  "produces": [],
+  "paths": {
+    "/api/carts/{postId}": {
+      "post": {
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["CART"],
+        "name": "장바구니 추가",
+        "summary": "장바구니에 상품 추가",
+        "parameters": [
+          {
+            "name": "postId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "description": "post의 ID"
+            }
+          },
+          {
+            "name": "req.body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "description": "user의 ID"
+                },
+                "title": {
+                  "type": "String",
+                  "description": "게시글의 제목"
+                },
+                "price": {
+                  "type": "string",
+                  "description": "가격"
+                },
+                "img": {
+                  "type": "String",
+                  "description": "상품 게시글 이미지의 url"
+                },
+                "quantity": {
+                  "type": "string",
+                  "description": "상품의 구매 수량"
+                }
+              },
+              "example": {
+                "userId": "test1",
+                "title": "유기농 요구르트 플레인",
+                "price": "2380",
+                "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrZXK3TgcxqYn4VDLUvuNC7zcTz6DzLj03rw&usqp=CAU",
+                "quantity": "3"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "장바구니 추가 완료"
+          },
+          "405": {
+            "description": "이미 장바구니에 있는 상품입니다."
+          },
+          "400": {
+            "description": "알 수 없는 에러가 발생했습니다. 관리자에게 문의하세요."
+          }
+        }
+      }
+    }
+  },
+  "definitions": {}
+}
