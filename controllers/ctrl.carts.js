@@ -35,6 +35,7 @@ const ctrlCarts = {
       });
     }
 
+
     // 언제 담은건지 알아두기 위한 값
     const date = new Date();
 
@@ -43,7 +44,7 @@ const ctrlCarts = {
         title: postInfo.title,
         price: postInfo.price,
         imgUrl: postInfo.imgUrl,
-        quntity: postInfo.quntity,
+        quantity: postInfo.quantity,
         date: date,
       });
       return res.status(200).send({
