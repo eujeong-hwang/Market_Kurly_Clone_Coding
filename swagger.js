@@ -1,14 +1,5 @@
 const swaggerAutogen = require("swagger-autogen")();
 
-// const doc = {
-//   info: {
-//     title: "MMH API",
-//     description: "This is Apis for MMH",
-//   },
-//   host: "localhost:3000",
-//   schemes: ["http"],
-// };
-
 const doc = {
   info: {
     title: 'MMH API',
