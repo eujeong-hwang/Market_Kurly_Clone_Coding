@@ -14,9 +14,6 @@ app.use(express.static('public'))
 
 app.use("/api", usersRouter);
 
-app.set("views", __dirname + "/views");
-app.set("view engine", "ejs");
-
 const handleListen = () => {
   console.log(`서버가 요청을 받을 준비가 됐어요😀 http://localhost:3000`);
 };
