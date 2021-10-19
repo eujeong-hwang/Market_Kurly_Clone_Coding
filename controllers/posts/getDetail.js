@@ -15,5 +15,4 @@ const getDetailFunc = async (req, res) => {
       }
 };
 
-
 module.exports = getDetailFunc;
