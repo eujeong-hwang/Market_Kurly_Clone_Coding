@@ -12,7 +12,7 @@ app.use(cors());
 
 const usersRouter = require('./routes/user')
 const postsRouter = require('./routes/post')
-// const cartsRouter = require('./routes/carts')
+const cartsRouter = require('./routes/cart')
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
@@ -20,7 +20,7 @@ app.use(express.static('public'))
 
 app.use("/api", usersRouter);
 app.use("/api", postsRouter);
-// app.use("/api", cartsRouter);
+app.use("/api", cartsRouter);
 
 const handleListen = () => {
   console.log(`서버가 요청을 받을 준비가 됐어요😀 http://localhost:3000`);
