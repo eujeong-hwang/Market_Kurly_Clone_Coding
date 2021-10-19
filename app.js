@@ -6,7 +6,7 @@ const PORT = process.env.PORT;
 const connect = require("./schemas");
 connect();
 
-const cartsRouter = require('./routes/carts')
+const cartsRouter = require('./routes/cart')
 
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())

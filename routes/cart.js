@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const ctrlCarts = require('../controllers/ctrl.carts')
+const ctrlCarts = require('../controllers/cart/ctrl.carts')
 
 //에러 핸들 필요함
 // 400,401,404,500
