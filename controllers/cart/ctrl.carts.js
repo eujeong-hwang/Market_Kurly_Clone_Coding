@@ -1,4 +1,4 @@
-const Cart = require('../../schemas/Cart');
+const Cart = require('../../schemas/cart');
 
 const ctrlCarts = {
   allCart: async (req, res) => {
