@@ -22,6 +22,54 @@
   "produces": [],
   "paths": {
 
+    "/api/posts/main": {
+      "post": {
+        "tags": ["POST"],
+        "description": "상품 업로드 하기",
+        "parameters": [
+          {
+            "name": "obj",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "연안식당 푸짐한 동태탕"
+                },
+                "price": {
+                  "example": "10008"
+                },
+                "img": {
+                  "example": "https://img-cf.kurly.com/shop/data/goodsview/20200401/gv40000088471_1.jpg"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200":{
+            "description": "상품 등록에 성공하였습니다."
+          },
+          "400": {
+            "description": "알 수 없는 오류가 떴습니다. 관리자에게 문의하세요."
+          }
+        }
+      },
+      "get": {
+        "tags": ["POST"],
+        "description": "상품 조회하기",
+        "parameters": [],
+        "responses": {
+         "200":{
+            "description": "success"
+          },
+          "400": {
+            "description": "알 수 없는 오류가 떴습니다. 관리자에게 문의하세요."
+          }
+        }
+      }
+    },
+
     "/api/carts/{postId}": {
       "post": {
         "description" : "장바구니에 상품을 추가하는 API, API url의 쿼리값, 프론트에서 제공하는 BODY에 담긴 값을 받아서 실행시킨다.",
