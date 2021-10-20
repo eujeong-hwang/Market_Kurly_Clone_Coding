@@ -26,18 +26,28 @@ const ctrlCarts = {
     const userId = user.userId;
     console.log(userId, postId, '유저, 포스트 아이디 확인용');
     const { title, price, img, quantity } = req.body;
+
+    //예외처리 : swagger에서 잘못된 포스트아이디 값이 들어왔을 때,
+    if(postId === '{postId}'){
+      console.log(postId);
+      console.log("postId값 오류로 인한 서버 튕김");
+      return res.status(400).send({
+        msg: "postId값이 입력되지 않았습니다."
+      });
+    };
+
     // 프론트와 어떤 정보를 주고받을 지 상의 필요
 
     // 장바구니에 담긴 물품에 대해 장바구니 담기를 눌렀을 때
-    const isCart = await Cart.findOne({ userId, postId });
-    console.log(isCart);
-    if (isCart) {
-      return res.status(400).send({
-        result: 'failure',
-        msg: '이미 장바구니에 담긴 물품입니다.',
-        // 프론트에서 해당유저의 장바구니로 이동??
-      });
-    }
+      const isCart = await Cart.findOne({ userId, postId });
+      console.log(isCart);
+      if (isCart) {
+        return res.status(400).send({
+          result: 'failure',
+          msg: '이미 장바구니에 담긴 물품입니다.',
+          // 프론트에서 해당유저의 장바구니로 이동??
+        });
+      }
 
     // 언제 담은건지 알아두기 위한 값
     const date = new Date();
@@ -69,6 +79,7 @@ const ctrlCarts = {
 
   updateCart: async (req, res) => {
     const { quantity, postId } = req.body;
+    console.log(quantity, postId);
     // console.log(res.locals.user);
     const userId = res.locals.user.userId;
     console.log(userId);
@@ -76,7 +87,16 @@ const ctrlCarts = {
     // const { user } = res.locals;
     // const userId = user.userId;
 
-    // 예외 상황1 : 갯수 1개에서 0개로
+    // 예외상황1: user에 장바구니에 postId가 없을때
+    const targetCart = await Cart.findOne({ userId, postId });
+    if(!targetCart){
+      return res.status(400).send({
+        msg: "본인의 장바구니에 담긴 상품이 아닙니다."
+        // 스웨거를 작동시켜야만 만날 수 있는 에러
+      });
+    };
+
+    // 예외 상황2 : 갯수 1개에서 0개로
     if (quantity == 0) {
       await Cart.deleteOne({
         userId,
