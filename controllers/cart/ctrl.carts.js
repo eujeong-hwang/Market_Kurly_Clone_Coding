@@ -52,6 +52,8 @@ const ctrlCarts = {
         quantity,
       });
       console.log(newCart, 'DB등록 완료');
+      console.log(postId, "vhtmxmdkdl");
+      
 
       return res.status(200).send({
         result: 'success',
