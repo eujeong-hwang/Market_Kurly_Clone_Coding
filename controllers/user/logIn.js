@@ -14,22 +14,13 @@ exports.logInFunc = async function (req, res) {
   }
   if (!bcrypt.compareSync(password, user.password)) {
     res.status(400).send({
-<<<<<<< HEAD
-      errorMessage: "이메일 또는 패스워드가 잘못됐습니다.",
-=======
       errorMessage: '이메일 또는 패스워드가 잘못됐습니다.',
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
     });
     return;
   }
   const token = jwt.sign({ userId: user.userId }, process.env.MY_SECRET_KEY);
-<<<<<<< HEAD
-  console.log("토큰", token);
-  res.stauts(200).json({
-=======
   console.log('토큰', token);
   res.status(200).json({
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
     token,
   });
 };

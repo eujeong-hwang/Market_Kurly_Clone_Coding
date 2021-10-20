@@ -8,25 +8,25 @@ exports.signUp = async (req, res) => {
     let existemail = await User.find({ email });
     if (existemail.length) {
       return res.status(406).send({
-<<<<<<< HEAD
-        errorMessage: "이미 사용중인 email입니다.",
-=======
         errorMessage: '이미 사용중인 email입니다.',
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
       });
     }
   } catch (err) {
     console.log(err);
     res.status(403).send({
-<<<<<<< HEAD
-      msg: "형식에 맞지 않는 이메일입니다.",
-  })
-  return;
-=======
       msg: '형식에 맞지 않는 이메일입니다.',
     });
     return;
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
+  }
+  try {
+    await signUp.passwordSchema.validateAsync(req.body);
+    
+  } catch (err) {
+    console.log(err);
+    res.status(407).send({
+      msg: 'password는 3자리 이상 20자리이하만 입력 가능합니다.',
+    });
+    return;
   }
   try {
     let { userId, email, password, passwordConfirm, name } =
@@ -46,11 +46,7 @@ exports.signUp = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(402).send({
-<<<<<<< HEAD
-      msg: "필수 사항을 모두 채워 주세요",
-=======
-      msg: '필수 사항을 모두 채워 주세요',
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
+      msg: 'ID, email, password, name은 필수 입력 항목입니다.',
     });
   }
 };
@@ -72,14 +68,7 @@ exports.checkDup = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(403).send({
-<<<<<<< HEAD
-      msg: "ID의 형식을 확인해주세요!",
-  })
-}
-}
-=======
-      msg: 'ID의 형식을 확인해주세요!',
+      msg: 'ID는 3자리 이상 20자리 이하여야 합니다.(특수문자 사용불가)!',
     });
   }
 };
->>>>>>> 9bd4ce99ece8b7cf7de514fa3de27bdb59fe9b38
