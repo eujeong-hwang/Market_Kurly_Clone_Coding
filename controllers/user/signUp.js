@@ -3,44 +3,49 @@ const signUp = require("../../schemas/joi");
 const User = require("../../schemas/user");
 
 exports.signUp = async (req, res) => {
+  
   try {
-    const { userId, email, password, confirmPassword, name } =
-      await signUp.signUpSchema.validateAsync(req.body);
-    console.log("1");
-    const existUsers = await User.find({ userId });
-
-    if (password !== confirmPassword) {
-      console.log("2");
-      res.status(400).send({
-        errorMessage: "패스워드가 패스워드 확인란과 동일하지 않습니다.",
-      });
-    } else if (existUsers.length) {
-      console.log("3");
-      res.status(400).send({
-        errorMessage: "이미 사용중인 ID입니다.",
-      });
-    } else if (userId == password) {
-      console.log("4");
-      res.status(400).send({
-        errorMessage: "비밀번호는 ID와 다른 값이여야 합니다.",
+    let {email} = await signUp.emailSchema.validateAsync(req.body);
+    let existemail = await User.find({ email });
+    if (existemail.length) {
+      return res.status(400).send({
+        errorMessage: "이미 사용중인 email입니다.",
       });
     }
-    console.log("5");
+  } catch (err) {
+    console.log(err);
+    res.status(400).send({
+      msg: "형식에 맞지 않는 이메일입니다.",
+  })
+  return;
+  }
+  try {
+    let { userId, email, password, passwordConfirm, name } =
+      await signUp.signUpSchema.validateAsync(req.body);
+      
+    if (password !== passwordConfirm) {
+      
+      res.status(400).send({
+        msg: "패스워드가 패스워드 확인란과 동일하지 않습니다.",
+      });
+    } 
+    
     const encryptedPassword = bcrypt.hashSync(password, 10);
 
     await User.create({ userId, email, password: encryptedPassword, name });
-
+    
     res.status(201).send({ result: "success", msg: "회원가입을 환영합니다." });
   } catch (err) {
     console.log(err);
     res.status(400).send({
-      errorMessage: "요청한 데이터 형식이 올바르지 않습니다.",
+      msg: "필수 사항을 모두 채워 주세요",
     });
   }
 };
 
 exports.checkDup = async (req, res) => {
   try {
+    console.log(req.body)
     const { userId } = await signUp.userIdSchema.validateAsync(req.body);
     const existUsers = await User.find({ userId });
     if (existUsers.length) {
@@ -55,7 +60,7 @@ exports.checkDup = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(400).send({
-      errorMessage: "ID의 형식을 확인해주세요!",
+      msg: "ID의 형식을 확인해주세요!",
   })
 }
 }

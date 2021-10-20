@@ -1,27 +1,29 @@
-const Joi = require('joi');
+const Joi = require("joi");
 
 exports.userIdSchema = Joi.object({
   userId: Joi.string()
     .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{3,20}$/))
     .required(),
-})
+});
+
+exports.emailSchema = Joi.object({
+  email: Joi.string()
+    .email()
+    .required(),
+}).unknown();
 
 exports.signUpSchema = Joi.object({
   userId: Joi.string()
     .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{3,20}$/))
     .required(),
-    
-  email: Joi.string().email()
-    // .pattern(
-    //   new RegExp(
-    //     /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i
-    //   )
-    // )
+
+  email: Joi.string()
+    .email()
     .required(),
   password: Joi.string()
     .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{3,12}$/))
     .required(),
-  confirmPassword: Joi.string()
+  passwordConfirm: Joi.string()
     .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{3,12}$/))
     .required(),
   name: Joi.string()
