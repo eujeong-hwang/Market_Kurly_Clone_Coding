@@ -8,13 +8,13 @@ exports.signUp = async (req, res) => {
     let {email} = await signUp.emailSchema.validateAsync(req.body);
     let existemail = await User.find({ email });
     if (existemail.length) {
-      return res.status(400).send({
+      return res.status(406).send({
         errorMessage: "이미 사용중인 email입니다.",
       });
     }
   } catch (err) {
     console.log(err);
-    res.status(400).send({
+    res.status(403).send({
       msg: "형식에 맞지 않는 이메일입니다.",
   })
   return;
@@ -37,7 +37,7 @@ exports.signUp = async (req, res) => {
     res.status(201).send({ result: "success", msg: "회원가입을 환영합니다." });
   } catch (err) {
     console.log(err);
-    res.status(400).send({
+    res.status(402).send({
       msg: "필수 사항을 모두 채워 주세요",
     });
   }
@@ -59,7 +59,7 @@ exports.checkDup = async (req, res) => {
     }
   } catch (err) {
     console.log(err);
-    res.status(400).send({
+    res.status(403).send({
       msg: "ID의 형식을 확인해주세요!",
   })
 }
