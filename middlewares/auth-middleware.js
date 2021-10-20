@@ -18,7 +18,7 @@ module.exports = (req, res, next) => {
     console.log('미들웨어 지나갑니다!')
     const { userId } = jwt.verify(tokenValue, SECRET_KEY)
     console.log('미들웨어', userId)
-    User.findOne({userId})
+    User.findOne({ userId })
       .exec()
       .then((user) => {
         // console.log("미들웨어 유저", user)
