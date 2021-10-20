@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const ctrlCarts = require('../controllers/cart/ctrl.carts')
-const authMiddleware = require("../middlewares/auth-middleware");
+const ctrlCarts = require('../controllers/cart/ctrl.carts');
+const authMiddleware = require('../middlewares/auth-middleware');
 
 //에러 핸들 필요함
 // 400,401,404,500
