@@ -5,8 +5,9 @@ const SECRET_KEY = process.env.MY_SECRET_KEY;
 module.exports = (req, res, next) => {
   const { authorization } = req.headers;
   console.log('미들웨어다', authorization);
+  let [tokenType, tokenValue] = [];
   try {
-    const [tokenType, tokenValue] = authorization.split(' ');
+    [tokenType, tokenValue] = authorization.split(' ');
   } catch (error) {
     return res.status(500).send({
       errorMessage: '로그인 후 사용하세요',
