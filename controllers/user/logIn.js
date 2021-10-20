@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../../schemas/user");
 const bcrypt = require("bcrypt");
 
-const logInFunc = async (req, res) => {
+exports.logInFunc = async function(req, res) {
   const { email, password } = req.body;
   // console.log(email)
   const user = await User.findOne({ email: email }).exec();
@@ -25,4 +25,15 @@ const logInFunc = async (req, res) => {
   });
 };
 
-module.exports = logInFunc;
+exports.authorization = async function(req,res) {
+  console.log("사용자 정보", res.locals);
+  const { user } = res.locals; //중간 데이터를 설정할 수 있으며, 해당 데이터를 뷰에서 사용할수 있음.
+  res.send({
+    user: {
+      email: user.email,
+      userId: user.userId,
+    },
+  });
+}
+
+
