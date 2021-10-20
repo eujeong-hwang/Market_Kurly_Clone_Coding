@@ -1,39 +1,42 @@
-const jwt = require('jsonwebtoken')
-const User = require('../schemas/user')
-const SECRET_KEY = process.env.MY_SECRET_KEY
+const jwt = require('jsonwebtoken');
+const User = require('../schemas/user');
+const SECRET_KEY = process.env.MY_SECRET_KEY;
 
 module.exports = (req, res, next) => {
-  const { authorization } = req.headers
-  console.log('미들웨어다', authorization)
-  const [tokenType, tokenValue] = authorization.split(' ')
+  const { authorization } = req.headers;
+  console.log('미들웨어다', authorization);
+  try {
+    const [tokenType, tokenValue] = authorization.split(' ');
+  } catch (error) {
+    return res.status(500).send({
+      errorMessage: '로그인 후 사용하세요',
+    });
+  }
   console.log(tokenType);
   if (tokenType !== 'Bearer') {
-    console.log('미들웨어가 안먹힘')
+    console.log('미들웨어가 안먹힘');
     res.status(401).send({
       errorMessage: '로그인 후 사용하세요',
-    })
-    return
+    });
+    return;
   }
   try {
-    console.log('미들웨어 지나갑니다!')
-    const { userId } = jwt.verify(tokenValue, SECRET_KEY)
-    console.log('미들웨어', userId)
+    console.log('미들웨어 지나갑니다!');
+    const { userId } = jwt.verify(tokenValue, SECRET_KEY);
+    console.log('미들웨어', userId);
     User.findOne({ userId })
       .exec()
       .then((user) => {
         // console.log("미들웨어 유저", user)
-        res.locals.user = user
-        console.log('마지막 테스트', res.locals.user)
-        next()
-      })
+        res.locals.user = user;
+        console.log('마지막 테스트', res.locals.user);
+        next();
+      });
   } catch (error) {
-    console.log('미들웨어 오류 났네요!')
+    console.log('미들웨어 오류 났네요!');
     res.status(401).send({
       errorMessage: '로그인 후 사용하세요!',
-    })
-    return
+    });
+    return;
   }
-}
-
-//미들웨어 문제!
-
+};

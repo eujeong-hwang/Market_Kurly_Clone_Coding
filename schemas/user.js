@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema({
@@ -10,7 +10,7 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-  
+
   email: {
     type: String,
     required: true,
@@ -18,8 +18,7 @@ const UserSchema = new Schema({
   name: {
     type: String,
     required: true,
-  }
-  
+  },
 });
 
 // UserSchema.virtual('userId').get(function () {
@@ -29,4 +28,4 @@ const UserSchema = new Schema({
 //   virtuals: true,
 // })
 
-module.exports = mongoose.model("User", UserSchema);
+module.exports = mongoose.model('User', UserSchema);

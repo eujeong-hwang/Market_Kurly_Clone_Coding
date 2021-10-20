@@ -1,13 +1,13 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 const CartSchema = new Schema({
-  userId:{
-    type:String,
-    required: true
+  userId: {
+    type: String,
+    required: true,
   },
-  postId : {
-    type: String
+  postId: {
+    type: String,
   },
   title: {
     type: String,
@@ -37,4 +37,4 @@ const CartSchema = new Schema({
 //   virtuals: true,
 // });
 
-module.exports = mongoose.model("Cart", CartSchema);
+module.exports = mongoose.model('Cart', CartSchema);

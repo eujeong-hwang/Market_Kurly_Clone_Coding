@@ -52,8 +52,7 @@ const ctrlCarts = {
         quantity,
       });
       console.log(newCart, 'DB등록 완료');
-      console.log(postId, "vhtmxmdkdl");
-      
+      console.log(postId, 'vhtmxmdkdl');
 
       return res.status(200).send({
         result: 'success',
@@ -89,11 +88,11 @@ const ctrlCarts = {
       });
     }
 
-    const bfChgCart = await Cart.findOne({userId, postId});
+    const bfChgCart = await Cart.findOne({ userId, postId });
     // console.log(bfChgCart, 'Before Change');
     console.log(bfChgCart.quantity, 'Before Change Quantity');
 
-    if(bfChgCart === null){
+    if (bfChgCart === null) {
       return res.status(400).send({
         result: 'failure',
         msg: '장바구니에 등록된 물품이 아닙니다.',
@@ -112,7 +111,7 @@ const ctrlCarts = {
           },
         }
       );
-      const atChgCart = await Cart.findOne({userId, postId});
+      const atChgCart = await Cart.findOne({ userId, postId });
       console.log(atChgCart.quantity, 'After Change Quantity');
 
       return res.status(200).send({
@@ -133,7 +132,7 @@ const ctrlCarts = {
     const userId = user.userId;
     const { postId } = req.body;
 
-    const isCart = await Cart.findOne({userId, postId});
+    const isCart = await Cart.findOne({ userId, postId });
     if (isCart === null) {
       return res.status(400).send({
         result: 'failure',
