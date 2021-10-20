@@ -21,8 +21,10 @@
   "consumes": [],
   "produces": [],
   "paths": {
+
     "/api/carts/{postId}": {
       "post": {
+        "description" : "장바구니에 상품을 추가하는 API, API url의 쿼리값, 프론트에서 제공하는 BODY에 담긴 값을 받아서 실행시킨다.",
         "security": [
           {
             "bearerAuth": []
@@ -48,10 +50,6 @@
             "schema": {
               "type": "object",
               "properties": {
-                "userId": {
-                  "type": "string",
-                  "description": "user의 ID"
-                },
                 "title": {
                   "type": "String",
                   "description": "게시글의 제목"
@@ -70,7 +68,6 @@
                 }
               },
               "example": {
-                "userId": "test1",
                 "title": "유기농 요구르트 플레인",
                 "price": "2380",
                 "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrZXK3TgcxqYn4VDLUvuNC7zcTz6DzLj03rw&usqp=CAU",
@@ -87,7 +84,132 @@
             "description": "이미 장바구니에 있는 상품입니다."
           },
           "400": {
-            "description": "알 수 없는 에러가 발생했습니다. 관리자에게 문의하세요."
+            "description": "알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요."
+          },
+          "500": {
+            "description": "서버 오류 발생. 권한을 확인해 주세요."
+          }
+        }
+      }
+    },
+
+    "/api/carts": {
+      
+      "get": {
+        "description" : "로그인 한 유저의 장바구니에 담긴 모든 물품을 조회하는 API",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["CART"],
+        "name": "장바구니 조회",
+        "summary": "특정 유저 장바구니 조회",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "장바구니를 모두 불러왔습니다."
+          },
+          "401": {
+            "description": "로그인이 필요합니다."
+          },
+          "400": {
+            "description": "알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요."
+          },
+          "500": {
+            "description": "로그인이 필요합니다."
+          }
+        }
+      },
+
+      "put": {
+        "description" : "장바구니에 상품 수량을 변경하는 API, 프론트에서 제공하는 BODY에 담긴 값을 받아서 실행시킨다.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["CART"],
+        "name": "장바구니 수정",
+        "summary": "장바구니 특정 물품 수량 수정",
+        "parameters": [
+          {
+            "name": "req.body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "quantity": {
+                  "type": "string",
+                  "description": "상품의 구매 수량"
+                },
+                "postId": {
+                  "type": "String",
+                  "description": "상품의 ID"
+                }
+              },
+              "example": {
+                "quantity": "2",
+                "postId": "d9uchnuieqwu13"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "수정이 완료되었습니다."
+          },
+          "200_2": {
+            "description": "(물품 갯수가 1에서 0으로 바뀌었을 때,) 삭제가 완료되었습니다."
+          },
+          "400": {
+            "description": "알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요."
+          },
+          "500": {
+            "description": "서버 오류 발생. 권한을 확인해 주세요."
+          }
+        }
+      },
+
+      "delete": {
+        "description" : "장바구니에 상품을 제거하는 API, 프론트에서 제공하는 BODY에 담긴 값을 받아서 실행시킨다.",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "tags": ["CART"],
+        "name": "장바구니 삭제",
+        "summary": "장바구니 특정 물품 삭제",
+        "parameters": [
+          {
+            "name": "req.body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "postId": {
+                  "type": "String",
+                  "description": "상품의 ID"
+                }
+              },
+              "example": {
+                "postId": "d9uchnuieqwu13"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "해당 물품이 장바구니에서 삭제되었습니다."
+          },
+          "400": {
+            "description": "알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요."
+          },
+          "400_2": {
+            "description": "(장바구니에 등록된 물품이 아닐 때,)장바구니에 등록된 물품이 아닙니다."
           },
           "500": {
             "description": "서버 오류 발생. 권한을 확인해 주세요."
@@ -96,5 +218,6 @@
       }
     }
   },
+
   "definitions": {}
 }
