@@ -44,4 +44,4 @@ clone_code Market kally
 [http://gomtang.shop](http://gomtang.shop)
 
 ## 🔗 7. 시연 동영상 링크
-[https://www.youtube.com/watch?v=LVbsXQ08I9k](https://www.youtube.com/watch?v=LVbsXQ08I9k)
+
