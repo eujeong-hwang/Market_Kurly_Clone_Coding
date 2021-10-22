@@ -11,8 +11,11 @@ Market Kurly : https://www.kurly.com
    - Backend (Node.js)
     황유정, 임성찬, 오정민
     
-   - Frontend (React)
+   - Frontend (React) 
     장원배, 이승민, 신유빈
+    
+    - Frontend Github
+     https://github.com/calvin9150/kurly-frontend/tree/main/src
 
 <br>
  
