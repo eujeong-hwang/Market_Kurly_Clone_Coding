@@ -48,15 +48,13 @@ Market Kurly : https://www.kurly.com
 
 ## 🖥 6. 해결한 문제/ 앞으로 해결할 문제
 - `Backend`
-    - 개인 프로필 정보를 삭제할 때, 전체 User전체 db를 지우지 않고,  특정 db값만 지우고 싶으면 어떡해야 할까?
-    - User.deleteOne() 을 사용하면 User 정보 안에 있는 _id, userId, password, userPic, userIntro가 전부 지워진다.
-    - 그래서 userPic과 userIntro를 지우기 위해서, findOneAndUpdate( )를 쓰고, userPic 과 userIntro에 null값을 부여했다.
-        
-        ```jsx
-        await User.findOneAndUpdate(
-                    { userId: user.userId },
-                    { $set: { userIntro : null, userPic : null }}
-        )
+- 비밀번호에 모든 특수문자로 구성할 수 있도록 허용을 하려면 어떻게 할까요?         
+    ```jsx
+        exports.passwordSchema = Joi.object({
+           password: Joi.string()
+            .pattern(new RegExp(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/))
+            .required(),
+        }).unknown();
         ```
         
 - 개인 프로필 정보를 조회하기 위해서, back에서 front로 user 정보를 전부 보내는데, 이것이 보안상 위험한데 어떡해 해결 하실 건가요?
