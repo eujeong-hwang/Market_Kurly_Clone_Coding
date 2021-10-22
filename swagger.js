@@ -6,7 +6,7 @@ const doc = {
     version: '1.0.0',
     description: 'This is Apis for MMH',
   },
-  host: '3.35.233.239',
+  host: 'localhost:3000',
   basePath: '/',
   securityDefinitions: {
     bearerAuth: {

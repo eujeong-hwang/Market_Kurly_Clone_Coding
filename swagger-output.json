@@ -5,7 +5,7 @@
     "description": "This is Apis for MMH",
     "version": "1.0.0"
   },
-  "host": "3.35.233.239",
+  "host": "localhost:3000",
   "basePath": "/",
   "securityDefinitions": {
     "bearerAuth": {

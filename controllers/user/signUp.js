@@ -24,7 +24,7 @@ exports.signUp = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(407).send({
-      msg: 'password는 3자리 이상 20자리이하만 입력 가능합니다.',
+      msg: 'password는 10자리 이상만 입력 가능합니다.',
     });
     return;
   }
@@ -68,7 +68,7 @@ exports.checkDup = async (req, res) => {
   } catch (err) {
     console.log(err);
     res.status(403).send({
-      msg: 'ID는 3자리 이상 20자리 이하여야 합니다.(특수문자 사용불가)!',
+      msg: 'ID는 6자리 이상 20자리 이하여야 합니다.(특수문자 사용불가)!',
     });
   }
 };
