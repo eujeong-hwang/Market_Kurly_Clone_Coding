@@ -74,6 +74,4 @@ Market Kurly : https://www.kurly.com
             .required(),
         }).unknown();
      ```       
-- 왜 mysql이 아닌, nosql를 사용하였는가?
-    - ???ㅎㅎㅎ...
 
