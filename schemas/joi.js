@@ -29,7 +29,7 @@ exports.signUpSchema = Joi.object({
     .pattern(new RegExp(/^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{10,}$/))
     .required(),
   name: Joi.string()
-    .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{2,12}$/))
+    .pattern(new RegExp(/^[a-zA-Z0-9가-힣]{1,20}$/))
     .required(),
 });
 
