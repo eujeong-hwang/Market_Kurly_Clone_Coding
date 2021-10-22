@@ -28,7 +28,10 @@ Market Kurly : https://www.kurly.com
 ## 🖥 3. API 설계 & WireFrame
 [https://www.notion.so/1-Market-Hally-7b93dd22647647678e61fa3d19d18d12]
 
-## 🖥 4. 핵심기능
+## 🖥 4. SWAGGER(API 명세)
+![swagger](https://user-images.githubusercontent.com/59908525/138449937-43175527-0f87-40c3-ad6d-2f1ee4dd5715.PNG)
+
+## 🖥 5. 핵심기능
 - 로그인, 회원가입
   - JWT를 이용하여 회원가입과 로그인을 구현하였습니다.
   - 아이디는 6자리이상의 한/영문자, 숫자로 구성되어야합니다.
@@ -43,7 +46,7 @@ Market Kurly : https://www.kurly.com
   - 장바구니에 목록을 추가할 수 있습니다.
   - 물품 수량을 수정/삭제할 수 있습니다.
 
-## 🖥 5. 해결한 문제/ 앞으로 해결할 문제
+## 🖥 6. 해결한 문제/ 앞으로 해결할 문제
 - `Backend`
     - 개인 프로필 정보를 삭제할 때, 전체 User전체 db를 지우지 않고,  특정 db값만 지우고 싶으면 어떡해야 할까?
     - User.deleteOne() 을 사용하면 User 정보 안에 있는 _id, userId, password, userPic, userIntro가 전부 지워진다.
@@ -62,9 +65,6 @@ Market Kurly : https://www.kurly.com
 - BackEnd에서 작업을 하다가 정해진 API 설계 그대로 못 하고, 중간에 url을 바꾸게 되는 경우가 생기는데 그때마다 서로 맞추는 것보다 더 효율적인 방법이 있을까요?
     - swagger를 쓰면 된다! → 저희 팀은 안 쓰긴 했는데, 다른 팀이 쓴 것을 보니 front, back에 둘 다 좋은 것 같다.
 
-
-## 🔗 6. 웹페이지 링크 
-[http://gomtang.shop](http://gomtang.shop)
 
 ## 🔗 7. 시연 동영상 링크
 ![market_kurly](https://user-images.githubusercontent.com/90595291/138447202-80d76971-4a98-4bcd-8396-26793c40be5f.png)
