@@ -15,8 +15,7 @@ Market Kurly : https://www.kurly.com
     장원배, 이승민, 신유빈
     
     - Frontend Github
-     https://github.com/calvin9150/kurly-frontend/tree/main/src
-
+    https://github.com/calvin9150/kurly-frontend
 <br>
  
 ## 🔨 2. 기술 스택
