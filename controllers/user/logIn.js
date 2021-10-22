@@ -5,15 +5,16 @@ const bcrypt = require('bcrypt');
 exports.logInFunc = async function (req, res) {
   const { userId, password } = req.body;
   const user = await User.findOne({ userId : userId }).exec();
+  console.log(user)
   if (!user || userId !== user.userId) {
     res.status(400).send({
-      errorMessage: '이메일 또는 패스워드가 틀렸습니다',
+      msg: '이메일 또는 패스워드가 틀렸습니다',
     });
     return;
   }
   if (!bcrypt.compareSync(password, user.password)) {
     res.status(400).send({
-      errorMessage: '이메일 또는 패스워드가 잘못됐습니다.',
+      msg: '이메일 또는 패스워드가 잘못됐습니다.',
     });
     return;
   }

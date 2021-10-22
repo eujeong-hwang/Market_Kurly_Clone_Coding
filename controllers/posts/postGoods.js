@@ -24,7 +24,7 @@ const postGoodsFunc = async (req, res, next) => {
         const existTitle = await Posts.findOne({ title });
         if(existTitle){
           res.status(400).send({
-            errorMessage : "이미 존재하는 상품입니다."
+            msg : "이미 존재하는 상품입니다."
           })
           return;
         }
@@ -32,7 +32,7 @@ const postGoodsFunc = async (req, res, next) => {
         const uniqueUrl = await Posts.findOne({ img });
         if(uniqueUrl){
           res.status(400).send({
-            errorMessage: '이미 존재하는 이미지 url입니다.',
+            msg: '이미 존재하는 이미지 url입니다.',
           })
           return;
         }

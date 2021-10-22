@@ -10,7 +10,7 @@ const getDetailFunc = async (req, res) => {
     res.json({ result: 'success', detail: postDetail });
   } catch (err) {
     res.status(400).send({
-      errorMessage: '알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요.',
+      msg: '알 수 없는 오류가 발생했습니다. 관리자에게 문의하세요.',
     });
   }
 };

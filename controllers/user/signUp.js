@@ -8,7 +8,7 @@ exports.signUp = async (req, res) => {
     let existemail = await User.find({ email });
     if (existemail.length) {
       return res.status(406).send({
-        errorMessage: '이미 사용중인 email입니다.',
+        msg: '이미 사용중인 email입니다.',
       });
     }
   } catch (err) {
