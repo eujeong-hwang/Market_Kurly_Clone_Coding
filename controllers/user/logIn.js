@@ -3,10 +3,9 @@ const User = require('../../schemas/user');
 const bcrypt = require('bcrypt');
 
 exports.logInFunc = async function (req, res) {
-  const { email, password } = req.body;
-  // console.log(email)
-  const user = await User.findOne({ email: email }).exec();
-  if (!user || email !== user.email) {
+  const { userId, password } = req.body;
+  const user = await User.findOne({ userId : userId }).exec();
+  if (!user || userId !== user.userId) {
     res.status(400).send({
       errorMessage: '이메일 또는 패스워드가 틀렸습니다',
     });
@@ -30,7 +29,7 @@ exports.authorization = async function (req, res) {
   const { user } = res.locals; //중간 데이터를 설정할 수 있으며, 해당 데이터를 뷰에서 사용할수 있음.
   res.status(200).send({
     user: {
-      email: user.email,
+      // email: user.email,
       userId: user.userId,
     },
   });
