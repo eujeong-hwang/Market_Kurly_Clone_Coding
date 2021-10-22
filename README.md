@@ -34,12 +34,12 @@ Market Kurly : https://www.kurly.com
 
 <br>
 
-## 🖥 4 API 설계 & WireFrame
+## 🖥 4. API 설계 & WireFrame
 [https://www.notion.so/1-Market-Hally-7b93dd22647647678e61fa3d19d18d12]
 
 <br>
 
-## 🖥 5. SWAGGER(API 명세)
+## 📝 5. SWAGGER(API 명세)
 ![swagger](https://user-images.githubusercontent.com/59908525/138449937-43175527-0f87-40c3-ad6d-2f1ee4dd5715.PNG)
 
 <br>
@@ -72,8 +72,5 @@ Market Kurly : https://www.kurly.com
         }).unknown();
      ```       
 - 왜 mysql이 아닌, nosql를 사용하였는가?
-    - 상품들마다 필요한 물품의 정보들이 달라서, 관계들이 물품을 등록하거나 지울 때마다 다를 수 있어서. 
-    - 테이블에서 
-- BackEnd에서 작업을 하다가 정해진 API 설계 그대로 못 하고, 중간에 url을 바꾸게 되는 경우가 생기는데 그때마다 서로 맞추는 것보다 더 효율적인 방법이 있을까요?
-    - swagger를 쓰면 된다! → 저희 팀은 안 쓰긴 했는데, 다른 팀이 쓴 것을 보니 front, back에 둘 다 좋은 것 같다.
+    - ???ㅎㅎㅎ...
 
