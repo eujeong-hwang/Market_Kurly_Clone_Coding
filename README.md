@@ -6,7 +6,7 @@ Market Kurly : https://www.kurly.com
 
 ## 👨‍👧‍👦 1. Project Duration & Team Members
 
-- 제작 기간 : October 18, 2021 ~ October 22, 2021
+- Duration : October 18, 2021 ~ October 22, 2021
 - Members
    - Backend (Node.js)
     Eu Jeong Hwang, Sung chan Im, Jungmin Oh
